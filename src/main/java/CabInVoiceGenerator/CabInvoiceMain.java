@@ -19,4 +19,9 @@ public class CabInvoiceMain {
 		}
 		return totalFare;
 	}
+
+	public InvoiceSummary generateSummary(Ride[] rides) {
+		double totalFare = calculateTotalFare(rides);		
+		return new InvoiceSummary(rides.length,totalFare);
+	}
 }
