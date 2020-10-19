@@ -10,4 +10,13 @@ public class CabInvoiceMain {
 		double fare = COST_PER_KM * distance + COST_PER_MINUTE * time;
 		return fare<MINIMUM_FARE ? MINIMUM_FARE : fare ;
 	}
+
+	public double calculateTotalFare(Ride[] rides) {
+		double totalFare = 0;
+		for(Ride ride : rides)
+		{
+			totalFare = totalFare + this.calculateFare(ride.distance, ride.time);
+		}
+		return totalFare;
+	}
 }
