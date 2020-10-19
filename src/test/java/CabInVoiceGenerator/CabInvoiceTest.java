@@ -44,5 +44,15 @@ public class CabInvoiceTest {
 		InvoiceSummary outputInvoice = cabInvoiceMain.generateSummary(rides);
 		assertEquals(ecpectedInvoice, outputInvoice);
 	}
+	
+	@Test
+	public void givenUserIdShouldReturnSummary() {
+		Ride[][] ridesArray= {{new Ride(5.0,5),new Ride(0.1,2)},{new Ride(1.0,5),new Ride(0.2,2),new Ride(2.0,5)}};
+		int[] userArray = {1,2};
+		cabInvoiceMain.addRidesToRepo(userArray,ridesArray);
+		InvoiceSummary ecpectedInvoice = new InvoiceSummary(3,45.0);
+		InvoiceSummary outputInvoice = cabInvoiceMain.generateInvoice(2);
+		assertEquals(ecpectedInvoice, outputInvoice);
+	}
 
 }
