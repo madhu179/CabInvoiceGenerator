@@ -14,6 +14,12 @@ public class CabInvoiceTest {
 	@Before
 	public void createObject() {
 		cabInvoiceMain = new CabInvoiceMain();
+		Ride[] ridesArray= {new Ride(5.0,5),new Ride(0.2,2)};	
+		cabInvoiceMain.addRidesToRepo(1,ridesArray);		
+		Ride[] ridesArray21 = {new Ride(1.0,5)};
+		cabInvoiceMain.addRidesToRepo(2,ridesArray21);
+		Ride[] ridesArray22 = {new Ride(0.2,2),new Ride(2.0,5)};
+		cabInvoiceMain.addRidesToRepo(2,ridesArray22);	
 	}
 
 	@Test
@@ -49,9 +55,6 @@ public class CabInvoiceTest {
 	
 	@Test
 	public void givenUserIdShouldReturnSummary() {
-		Ride[][] ridesArray= {{new Ride(5.0,5),new Ride(0.1,2)},{new Ride(1.0,5),new Ride(0.2,2),new Ride(2.0,5)}};
-		int[] userArray = {1,2};
-		cabInvoiceMain.addRidesToRepo(userArray,ridesArray);
 		InvoiceSummary ecpectedInvoice = new InvoiceSummary(3,45.0);
 		InvoiceSummary outputInvoice = cabInvoiceMain.generateInvoice(2,Subscription_Type.NORMAL);
 		assertEquals(ecpectedInvoice, outputInvoice);
@@ -59,9 +62,6 @@ public class CabInvoiceTest {
 	
 	@Test
 	public void givenPremimumTypeAndUserIdShouldReturnSummary() {
-		Ride[][] ridesArray= {{new Ride(5.0,5),new Ride(0.2,2)},{new Ride(1.0,5),new Ride(0.2,2),new Ride(2.0,5)}};
-		int[] userArray = {1,2};
-		cabInvoiceMain.addRidesToRepo(userArray,ridesArray);
 		InvoiceSummary ecpectedInvoice = new InvoiceSummary(2,105.0);
 		InvoiceSummary outputInvoice = cabInvoiceMain.generateInvoice(1,Subscription_Type.PREMIMUM);
 		assertEquals(ecpectedInvoice, outputInvoice);

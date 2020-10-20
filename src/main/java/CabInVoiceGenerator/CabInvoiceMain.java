@@ -53,11 +53,11 @@ public class CabInvoiceMain {
 	}
 
 	public InvoiceSummary generateInvoice(int userId,Subscription_Type type) {
-		Ride[] rides = ridesRepo.getRideArray(userId);
+		Ride[] rides = (Ride[]) ridesRepo.getRideArray(userId);
 		return generateSummary(rides,type);
 	}
 
-	public void addRidesToRepo(int[] userArray, Ride[][] ridesArray) {
-		ridesRepo.addRidesToMap(userArray,ridesArray);
+	public void addRidesToRepo(int userId, Ride[] ridesArray) {
+		ridesRepo.addRidesToMap(userId,ridesArray);
 	}
 }
